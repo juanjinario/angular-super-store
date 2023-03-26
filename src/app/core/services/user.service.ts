@@ -35,24 +35,22 @@ export class UserService {
       map((user: any) => ({
         name: user.name,
         login: user.login,
-      })),
-      // Hace 5 reintentos si es que recibe un error
-      retry(5)
+      }))
     );
   }
 
   getUserList() {
     const url = `${this.baseUrl}/app?results=10`;
     return this.http.get(url).pipe(
-      map((user: any) => user.results),
+      map((user: any) => user.results)
       // Hace 5 reintentos si es que recibe un error
-      retryWhen((errors) =>
-        errors.pipe(
-          delay(1500),
-          tap((err) => console.warn("Reintentando...")),
-          take(5)
-        )
-      )
+      // retryWhen((errors) =>
+      //   errors.pipe(
+      //     delay(1500),
+      //     tap((err) => console.warn("Reintentando...")),
+      //     take(5)
+      //   )
+      // )
     );
   }
 }

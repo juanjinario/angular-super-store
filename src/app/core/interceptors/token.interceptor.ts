@@ -15,7 +15,6 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log("entro en el interceptor");
     const token = "esteEsElTokenQueMeDevuelveElAuth";
     // const token = AuthService.getToken(); // Obtener el token de autenticación
     if (token) {
